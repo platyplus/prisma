@@ -1,0 +1,97 @@
+# ------------------------------------------------------------------------------
+# Prisma:
+# ------------------------------------------------------------------------------
+
+# The deployment installs one pod by default
+replicas: 1
+
+image:
+  # Prisma image repository
+  repository: prismagraphql/prisma
+  # Prisma image version
+  tag: 1.8
+  # Specify an imagePullPolicy
+  # ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  pullPolicy: IfNotPresent
+
+## Databse configuration for Prisma. In most scenarios, these values
+## don't need to be changed unless you want to use a differnt database
+## than the one in the 'requirementes.yaml' for this chart. If that's the
+## case, please set 'postgresql.enabled' to false at the bottom of this file.
+database:
+  # The current supported connectors are [mysql, postgres]
+  connector: postgres
+  # These are the credentials needed to authenticate with the database.
+  user: prisma
+  password: prisma
+  # If 'postgresql.enabled' is false, you will need to provide the
+  # following values so that Prisma can use them as the database endpoint.
+  # host: ""
+  # port: ""
+
+## Optional secret to authenticate requests done through the Prisma CLI
+auth:
+  enabled: false
+  # secret: ""
+
+## Expose the prisma service to be accessed from outside the cluster (LoadBalancer service).
+## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
+## ref: http://kubernetes.io/docs/user-guide/services/
+service:
+  type: ClusterIP
+  port: 4466
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts: []
+    # - prisma.local
+  tls: []
+  #  - secretName: prisma-tls
+  #    hosts:
+  #      - prisma.local
+
+resources: {}
+#  limits:
+#    cpu: 100m
+#    memory: 128Mi
+#  requests:
+#    cpu: 100m
+#    memory: 128Mi
+
+## Node labels for pod assignment
+## ref: https://kubernetes.io/docs/user-guide/node-selection/
+nodeSelector: {}
+
+## Tolerations for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+tolerations: []
+
+## Affinity for pod assignment
+## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+affinity: {}
+
+# ------------------------------------------------------------------------------
+# PostgreSQL:
+# ------------------------------------------------------------------------------
+
+postgresql:
+  ## If true, install the PostgreSQL chart alongside Prisma
+  ## ref: https://github.com/kubernetes/charts/tree/master/stable/postgresql
+  enabled: true
+
+  ## Configure PostgreSQL resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  resources: ~
+
+  ## Specify a PostgreSQL imagePullPolicy
+  ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+  imagePullPolicy: "IfNotPresent"
+
+  ## Database credentials. These values should match the
+  ## credentials set in the 'database' field at the top of this file.
+  postgresUser: prisma
+  postgresPassword: prisma

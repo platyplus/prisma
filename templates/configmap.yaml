@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "prisma.fullname" . }}
+  labels:
+    app: {{ template "prisma.name" . }}
+    chart: {{ template "prisma.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  config: |
+    port: {{ .Values.service.port }}
+    {{- if .Values.auth.enabled }}
+    managementApiSecret: {{ .Values.auth.secret }}
+    {{- end}}
+    databases:
+      default:
+        connector: {{ .Values.database.connector }}
+        host: {{ template "prisma.database.host" . }}
+        port: {{ template "prisma.database.port" . }}
+        user: {{ .Values.database.user }}
+        password: {{ .Values.database.password }}
+        migrations: true
