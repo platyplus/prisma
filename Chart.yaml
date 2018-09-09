@@ -8,6 +8,6 @@ icon: https://i.imgur.com/wD4rVt4.png
 sources:
   - https://github.com/prismagraphql/prisma
 maintainers:
-  - name: giacomoguiulfo
-    email: giacomoguiulfo@gmail.com
+  - name: plmercereau
+    email: plmercereau@gmail.com
 engine: gotpl

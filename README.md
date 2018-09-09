@@ -18,8 +18,9 @@ TODO: upgrade prisma version
 To install the chart with the release name `my-release`:
 
 ```bash
-$ git clone https://github.com/platyplus/prisma-chart.git
-$ helm install --name my-release -f ./prisma-chart/values.yaml ./prisma-chart
+$ git clone https://github.com/platyplus/prisma-chart.git && cd prisma-chart
+$ helm dep up .
+$ helm install --name my-release -f ./values.yaml .
 ```
 
 By default, this chart includes a PostgreSQL chart as a dependency in the `requirements.yaml` file. However, this can be disabled and Prisma can be configured to use any other supported database.
