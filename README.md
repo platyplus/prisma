@@ -5,8 +5,7 @@
 https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
 TODO: username and password in a secret?
 TODO: Prisma secret in a secret?
-TODO: customized cloudsql-instance-credentials secret name
-TODO: certificate in the template
+TODO: customized cloudsql-instance-credentials secret name?
 TODO: issuer in the value
 TODO: default values.yaml and values-prod.yaml
 TODO: .gitignore: values-prod.yaml and cloudsql-instance-credentials.json
@@ -19,8 +18,9 @@ To install the chart with the release name `my-release`:
 
 ```bash
 $ git clone https://github.com/platyplus/prisma-chart.git && cd prisma-chart
+$ cp values.yaml values-prod.yaml
 $ helm dep up .
-$ helm install --name my-release -f ./values.yaml .
+$ helm install --name my-release -f ./values-prod.yaml .
 ```
 
 By default, this chart includes a PostgreSQL chart as a dependency in the `requirements.yaml` file. However, this can be disabled and Prisma can be configured to use any other supported database.
@@ -32,7 +32,7 @@ By default, this chart includes a PostgreSQL chart as a dependency in the `requi
 To uninstall/delete the `my-release` deployment:
 
 ```bash
-$ helm delete my-release
+$ helm del --purge my-release 
 ```
 
 The command removes all the Kubernetes components associated with the chart and deletes the release.

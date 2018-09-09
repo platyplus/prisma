@@ -23,7 +23,7 @@ spec:
       {{- range .hosts }}
         - {{ . }}
       {{- end }}
-      secretName: {{ $fullName }}-crt
+      secretName: {{ $fullName }}-tls
   {{- end }}
 {{- end }}
   rules:
