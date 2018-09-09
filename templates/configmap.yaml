@@ -18,6 +18,7 @@ data:
         connector: {{ .Values.database.connector }}
         host: {{ template "prisma.database.host" . }}
         port: {{ template "prisma.database.port" . }}
+        database: {{ template "prisma.database.name" . }}
         user: {{ .Values.database.user }}
         password: {{ .Values.database.password }}
         migrations: true

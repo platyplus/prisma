@@ -28,6 +28,10 @@ database:
   # following values so that Prisma can use them as the database endpoint.
   host: "127.0.0.1"
   port: "5432"
+  ## postgresql on google cloud sql through proxy
+  googleCloudSQL:
+    enabled: true
+    host: "XXX"
 
 ## Optional secret to authenticate requests done through the Prisma CLI
 auth:
@@ -78,12 +82,6 @@ affinity: {}
 # ------------------------------------------------------------------------------
 # PostgreSQL:
 # ------------------------------------------------------------------------------
-
-## postgresql on google cloud sql through proxy
-googleCloudSQL:
-  enabled: true
-  host: "XXX"
-
 postgresql:
   ## If true, install the PostgreSQL chart alongside Prisma
   ## ref: https://github.com/kubernetes/charts/tree/master/stable/postgresql

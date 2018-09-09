@@ -6,9 +6,6 @@ https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
 TODO: username and password in a secret?
 TODO: Prisma secret in a secret?
 TODO: customized cloudsql-instance-credentials secret name?
-TODO: issuer in the value
-TODO: default values.yaml and values-prod.yaml
-TODO: .gitignore: values-prod.yaml and cloudsql-instance-credentials.json
 
 ## Installing the Chart
 

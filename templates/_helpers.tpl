@@ -53,6 +53,18 @@ else use user-provided host
 {{- end -}}
 
 {{/*
+Set the proper database name. If postgresql is installed as part of this chart, use k8s service discovery,
+else use user-provided host
+*/}}
+{{- define "prisma.database.name" }}
+{{- if .Values.postgresql.enabled -}}
+{{- default "prisma" .Values.postgresql.service.name }}
+{{- else -}}
+{{- .Values.database.name }}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Set the proper database port. If postgresql is installed as part of this chart, use the default postgresql port,
 else use user-provided port
 */}}
