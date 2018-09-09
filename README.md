@@ -9,8 +9,6 @@ TODO: customized cloudsql-instance-credentials secret name?
 TODO: issuer in the value
 TODO: default values.yaml and values-prod.yaml
 TODO: .gitignore: values-prod.yaml and cloudsql-instance-credentials.json
-TODO: ignore requirements
-TODO: upgrade prisma version
 
 ## Installing the Chart
 

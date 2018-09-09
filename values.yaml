@@ -9,7 +9,7 @@ image:
   # Prisma image repository
   repository: prismagraphql/prisma
   # Prisma image version
-  tag: 1.8
+  tag: 1.15.3
   # Specify an imagePullPolicy
   # ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
   pullPolicy: IfNotPresent
