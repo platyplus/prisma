@@ -22,17 +22,17 @@ database:
   # The current supported connectors are [mysql, postgres]
   connector: postgres
   # These are the credentials needed to authenticate with the database.
-  user: prisma
-  password: prisma
+  user: postgres
+  password: "password"
   # If 'postgresql.enabled' is false, you will need to provide the
   # following values so that Prisma can use them as the database endpoint.
-  # host: ""
-  # port: ""
+  host: "127.0.0.1"
+  port: "5432"
 
 ## Optional secret to authenticate requests done through the Prisma CLI
 auth:
   enabled: false
-  # secret: ""
+  secret: "secret"
 
 ## Expose the prisma service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
@@ -42,17 +42,18 @@ service:
   port: 4466
 
 ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
+  enabled: true
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
-  hosts: []
-    # - prisma.local
-  tls: []
-  #  - secretName: prisma-tls
-  #    hosts:
-  #      - prisma.local
+  hosts:
+    - xxx.yyy.com
+  tls:
+    - secretName: xxx-cert
+      hosts:
+        - xxx.yyy.com
 
 resources: {}
 #  limits:
@@ -78,10 +79,15 @@ affinity: {}
 # PostgreSQL:
 # ------------------------------------------------------------------------------
 
+## postgresql on google cloud sql through proxy
+googleCloudSQL:
+  enabled: true
+  host: "XXX"
+
 postgresql:
   ## If true, install the PostgreSQL chart alongside Prisma
   ## ref: https://github.com/kubernetes/charts/tree/master/stable/postgresql
-  enabled: true
+  enabled: false
 
   ## Configure PostgreSQL resource requests and limits
   ## ref: http://kubernetes.io/docs/user-guide/compute-resources/

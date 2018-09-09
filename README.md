@@ -2,22 +2,24 @@
 
 [Prisma](https://prisma.io) is a performant open-source GraphQL ORM-like layer doing the heavy lifting in your GraphQL server.
 
-## TL;DR;
-
-```bash
-$ helm install incubator/prisma
-```
-
-## Introduction
-
-This chart bootstraps a prisma deployment on a [Kubernetes](http://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
+https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
+TODO: username and password in a secret?
+TODO: Prisma secret in a secret?
+TODO: customized cloudsql-instance-credentials secret name
+TODO: certificate in the template
+TODO: issuer in the value
+TODO: default values.yaml and values-prod.yaml
+TODO: .gitignore: values-prod.yaml and cloudsql-instance-credentials.json
+TODO: ignore requirements
+TODO: upgrade prisma version
 
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
 
 ```bash
-$ helm install --name my-release incubator/prisma
+$ git clone https://github.com/platyplus/prisma-chart.git
+$ helm install --name my-release -f ./prisma-chart/values.yaml ./prisma-chart
 ```
 
 By default, this chart includes a PostgreSQL chart as a dependency in the `requirements.yaml` file. However, this can be disabled and Prisma can be configured to use any other supported database.
