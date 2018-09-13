@@ -53,7 +53,7 @@ spec:
       volumes:
         - name: cloudsql-instance-credentials
           secret:
-            secretName: cloudsql-instance-credentials      
+            secretName: {{ template "prisma.fullname" . }}-secret    
 {{ end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:

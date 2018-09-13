@@ -21,6 +21,7 @@ image:
 database:
   # The current supported connectors are [mysql, postgres]
   connector: postgres
+  name: prisma
   # These are the credentials needed to authenticate with the database.
   user: postgres
   password: "password"
@@ -54,10 +55,6 @@ ingress:
   path: /
   hosts:
     - xxx.yyy.com
-  tls:
-    - secretName: xxx-cert
-      hosts:
-        - xxx.yyy.com
 
 resources: {}
 #  limits:

@@ -1,3 +1,4 @@
+{{- $servicePort := .Values.service.port -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -8,10 +9,14 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 data:
+  protocol: "http"
+  server: {{ template "prisma.fullname" . }}  
+  port: "{{ $servicePort }}"
+  # TODO config in a secret as it contains a secret
   config: |
     port: {{ .Values.service.port }}
-    {{- if .Values.auth.enabled }}
-    managementApiSecret: {{ .Values.auth.secret }}
+    {{- if .Values.service.secret }}
+    managementApiSecret: {{ .Values.service.secret }}
     {{- end}}
     databases:
       default:
