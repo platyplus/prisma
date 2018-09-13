@@ -1,12 +1,45 @@
 # Prisma Helm Chart
 
-[Prisma](https://prisma.io) is a performant open-source GraphQL ORM-like layer doing the heavy lifting in your GraphQL server.
-
 https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
 TODO: username and password in a secret?
-TODO: Prisma secret in a secret?
-TODO: customized cloudsql-instance-credentials secret name?
 TODO document CloudSQL
+
+## Pushing the chart to a codefresh repository
+### Get an API token
+https://g.codefresh.io/account-conf/tokens
+
+### Edit ~/.cfconfig
+```bash
+contexts:
+  default:
+    type: APIKey
+    name: default
+    url: 'https://g.codefresh.io'
+    token: 5b9aba85ce29f40100049dd9.cd2afcfd71331f4d4fe44f07ccc4c8b5
+    beta: false
+    onPrem: false
+current-context: default
+```
+
+### Add the repository
+```bash
+helm plugin install https://github.com/chartmuseum/helm-push
+helm repo add platyplus cm://h.cfcr.io/plmercereau/default
+# npm install -g codefresh
+```
+### Push the chart to the repository
+```bash
+helm push . platyplus
+```
+
+### Make the repository public
+```bash
+codefresh patch helm-repo platyplus -public 
+```
+## Configuring the public chart repository (if not configured to push charts)
+```bash
+helm repo add platyplus https://h.cfcr.io/plmercereau/default
+```
 
 ## Installing the Chart
 
