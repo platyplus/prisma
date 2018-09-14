@@ -7,7 +7,7 @@ steps:
      - ACTION=push
      - CHART_REF=.
   DeployChart:
-    title: Deploying the GraphQL server helm chart...
+    title: Deploying the Prisma server helm chart...
     image: 'codefresh/cfstep-helm:2.9.1'
     environment:
      - CHART_REF=.

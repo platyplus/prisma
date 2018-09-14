@@ -48,10 +48,10 @@ ingress:
   #   kubernetes.io/tls-acme: "true"
   # path: /
   # hosts:
-  #   - prisma.platyplus.io
+  #   - prisma.server.io
   # tls:
   #   - hosts:
-  #       - prisma.platyplus.io
+  #       - prisma.server.io
 
 resources: {}
 #  limits:
