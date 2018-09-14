@@ -1,4 +1,5 @@
 # Prisma Helm Chart
+[![Codefresh build status]( https://g.codefresh.io/api/badges/pipeline/plmercereau/platyplus%2Fprisma%2Fprisma?branch=master&key=eyJhbGciOiJIUzI1NiJ9.NWI5M2U0MGQwNTdiOGUwMDAxZmFkMjgx.OXdTB7Vte67YoKtDo9yes3tLkr8usTBnsY7t8HtTkyg&type=cf-1)]( https://g.codefresh.io/repositories/platyplus/prisma/builds?filter=trigger:build;branch:master;service:5b9c12c6e8852163437abb43~prisma)
 
 https://cloud.google.com/sql/docs/mysql/connect-kubernetes-engine
 TODO: username and password in a secret?
