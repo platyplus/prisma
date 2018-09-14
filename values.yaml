@@ -40,6 +40,7 @@ database:
 service:
   type: ClusterIP
   port: 4466
+  secret: "<secret>"
 
 ingress:
   enabled: false
