@@ -32,7 +32,7 @@ database:
   ## postgresql on google cloud sql through proxy
   googleCloudSQL:
     enabled: true
-    host: "platyplus-0402:europe-west1:prisma-prod"
+    host: "<env>"
 
 ## Expose the prisma service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.

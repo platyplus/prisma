@@ -17,3 +17,4 @@ steps:
      - VALUE_image_tag=${{CF_BRANCH_TAG_NORMALIZED}}
      - VALUE_service_secret=${{PRISMA_MANAGEMENT_API_SECRET}}
      - VALUE_database_password=${{CLOUDSQL_PASSWORD}}
+     - VALUE_database_googleCloudSQL_host=${{CLOUDSQL_HOST}}
