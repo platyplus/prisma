@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   # Prisma image repository
-  repository: prismagraphql/prisma
+  repository: platyplus/prisma
   # Prisma image version
   tag: 1.15.3
   # Specify an imagePullPolicy
@@ -24,7 +24,7 @@ database:
   name: prisma
   # These are the credentials needed to authenticate with the database.
   user: postgres
-  password: "password"
+  password: "<env>"
   # If 'postgresql.enabled' is false, you will need to provide the
   # following values so that Prisma can use them as the database endpoint.
   host: "127.0.0.1"
@@ -32,12 +32,7 @@ database:
   ## postgresql on google cloud sql through proxy
   googleCloudSQL:
     enabled: true
-    host: "XXX"
-
-## Optional secret to authenticate requests done through the Prisma CLI
-auth:
-  enabled: false
-  secret: "secret"
+    host: "platyplus-0402:europe-west1:prisma-prod"
 
 ## Expose the prisma service to be accessed from outside the cluster (LoadBalancer service).
 ## or access it from within the cluster (ClusterIP service). Set the service type and the port to serve it.
@@ -47,14 +42,16 @@ service:
   port: 4466
 
 ingress:
-  enabled: true
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    # certmanager.k8s.io/cluster-issuer: letsencrypt-prod
-    kubernetes.io/tls-acme: "true"
-  path: /
-  hosts:
-    - xxx.yyy.com
+  enabled: false
+  # annotations:
+  #   kubernetes.io/ingress.class: nginx
+  #   kubernetes.io/tls-acme: "true"
+  # path: /
+  # hosts:
+  #   - prisma.platyplus.io
+  # tls:
+  #   - hosts:
+  #       - prisma.platyplus.io
 
 resources: {}
 #  limits:
@@ -80,8 +77,6 @@ affinity: {}
 # PostgreSQL:
 # ------------------------------------------------------------------------------
 postgresql:
-  ## If true, install the PostgreSQL chart alongside Prisma
-  ## ref: https://github.com/kubernetes/charts/tree/master/stable/postgresql
   enabled: false
 
   ## Configure PostgreSQL resource requests and limits
@@ -94,5 +89,5 @@ postgresql:
 
   ## Database credentials. These values should match the
   ## credentials set in the 'database' field at the top of this file.
-  postgresUser: prisma
-  postgresPassword: prisma
+  # postgresUser: prisma
+  # postgresPassword: prisma

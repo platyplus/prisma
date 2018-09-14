@@ -1,0 +1,19 @@
+version: '1.0'
+steps:
+  StoreChart:
+    title: Storing Helm Chart
+    image: 'codefresh/cfstep-helm:2.9.1'
+    environment:
+     - ACTION=push
+     - CHART_REF=.
+  DeployChart:
+    title: Deploying the GraphQL server helm chart...
+    image: 'codefresh/cfstep-helm:2.9.1'
+    environment:
+     - CHART_REF=.
+     - RELEASE_NAME=prisma
+     - KUBE_CONTEXT=main@platyplus
+     - VALUE_image_pullPolicy=Always
+     - VALUE_image_tag=${{CF_BRANCH_TAG_NORMALIZED}}
+     - VALUE_service_secret=${{PRISMA_MANAGEMENT_API_SECRET}}
+     - VALUE_database_password=${{CLOUDSQL_PASSWORD}}

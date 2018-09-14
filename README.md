@@ -22,9 +22,12 @@ current-context: default
 ```
 
 ### Add the repository
+Attention: the repo should be public!
+-> to create a cf repo: codefresh create helm-repo platyplus
+-> then codefresh patch helm-repo platyplus -public
 ```bash
 helm plugin install https://github.com/chartmuseum/helm-push
-helm repo add platyplus cm://h.cfcr.io/plmercereau/default
+helm repo add platyplus cm://h.cfcr.io/plmercereau/platyplus
 # npm install -g codefresh
 ```
 ### Push the chart to the repository
@@ -42,19 +45,25 @@ helm repo add platyplus https://h.cfcr.io/plmercereau/default
 ```
 
 ## Installing the Chart
-
-To install the chart with the release name `my-release`:
+### Via a local helm chart
+To install the chart with the release name `prisma`:
 
 ```bash
 $ git clone https://github.com/platyplus/prisma-chart.git && cd prisma-chart
 $ cp values.yaml values-prod.yaml
 $ helm dep up .
 $ export PRISMA_MANAGEMENT_API_SECRET=<secret>
+$ export CLOUDSQL_PASSWORD=<password>
 $ helm install --name prisma \
 	--set service.secret=$PRISMA_MANAGEMENT_API_SECRET \
+	--set database.password=$CLOUDSQL_PASSWORD \
 	-f ./values-prod.yaml .
 ```
+### Via a Helm repository
+TODO
 
+
+# TODO: review
 By default, this chart includes a PostgreSQL chart as a dependency in the `requirements.yaml` file. However, this can be disabled and Prisma can be configured to use any other supported database.
 
 > **Tip**: List all releases using `helm list`
