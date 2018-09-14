@@ -7,7 +7,7 @@ replicas: 1
 
 image:
   # Prisma image repository
-  repository: platyplus/prisma
+  repository: prismagraphql/prisma
   # Prisma image version
   tag: 1.15.3
   # Specify an imagePullPolicy
