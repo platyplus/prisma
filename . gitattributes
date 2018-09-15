@@ -1,2 +1,4 @@
+* linguist-vendored
+*.tpl linguist-vendored=false
 *.yaml linguist-language=YAML
 *.yml linguist-language=YAML
