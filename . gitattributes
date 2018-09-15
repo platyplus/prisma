@@ -1,3 +1,1 @@
-*.tpl linguist-language=YAML
-*.json linguist-language=YAML
-*.txt linguist-language=YAML
+linguist-language=YAML
