@@ -55,8 +55,10 @@ helm dep up .
 export PRISMA_MANAGEMENT_API_SECRET=<secret>
 export CLOUDSQL_PASSWORD=<password>
 export CLOUDSQL_HOST=<CloudSQL host>
+export CLOUDSQL_CREDENTIALS=`cat cloudsql-instance-credentials.json | base64`
 helm install --name prisma \
-	--set service.secret=$PRISMA_MANAGEMENT_API_SECRET \
+    --set service.secret=$PRISMA_MANAGEMENT_API_SECRET \
+    --set database.googleCloudCredentials=$CLOUDSQL_CREDENTIALS \
 	--set database.password=$CLOUDSQL_PASSWORD \
     --set database.googleCloudSQL.host=$CLOUDSQL_HOST \
 	-f ./values.yaml .
