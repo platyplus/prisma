@@ -50,15 +50,16 @@ helm repo add platyplus https://h.cfcr.io/plmercereau/default
 To install the chart with the release name `prisma`:
 
 ```bash
-$ git clone https://github.com/platyplus/prisma-chart.git && cd prisma-chart
-$ cp values.yaml values-prod.yaml
-$ helm dep up .
-$ export PRISMA_MANAGEMENT_API_SECRET=<secret>
-$ export CLOUDSQL_PASSWORD=<password>
-$ helm install --name prisma \
+git clone https://github.com/platyplus/prisma-chart.git && cd prisma-chart
+helm dep up .
+export PRISMA_MANAGEMENT_API_SECRET=<secret>
+export CLOUDSQL_PASSWORD=<password>
+export CLOUDSQL_HOST=<CloudSQL host>
+helm install --name prisma \
 	--set service.secret=$PRISMA_MANAGEMENT_API_SECRET \
 	--set database.password=$CLOUDSQL_PASSWORD \
-	-f ./values-prod.yaml .
+    --set database.googleCloudSQL.host=$CLOUDSQL_HOST \
+	-f ./values.yaml .
 ```
 ### Via a Helm repository
 TODO
